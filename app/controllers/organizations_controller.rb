@@ -3,6 +3,8 @@ class OrganizationsController < ApplicationController
 
   # GET /organizations
   # GET /organizations.json
+
+  # We won't use this.
   def index
     @organizations = Organization.all
   end
@@ -69,6 +71,6 @@ class OrganizationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def organization_params
-      params[:organization]
+      params[:organization].permit(:name, :orgnumber)
     end
 end
