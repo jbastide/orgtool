@@ -19,6 +19,7 @@ class OrganizationsController < ApplicationController
       flash.now[:notice] = "No organization found by that name."
     end
     respond_to do |format|
+      format.html {render :index}
       format.json { render json: @organization, :only => [:name,:orgnumber] }
       format.xml { render xml: @organization, :only => [:name,:orgnumber]}
     end
