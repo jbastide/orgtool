@@ -11,10 +11,20 @@
 <% end %>
 
 <div>
-  <ul>
-    <li><%= @organization.name %></li>
-    <li><%= @organization.orgnumber %></li>
-  </ul>
+  <% if @organization.present? %>
+    <ul>
+      <li><%= @organization.name %></li>
+      <li><%= @organization.orgnumber %></li>
+    </ul>
+  <% end %>
 </div>
 
+<!-- This is here for basic CRUD. A production app could put these
+actions behind an authentication and session mechanism, such as what
+you'd get through Devise. -->
+
 <%= link_to 'New Organization', new_organization_path %>
+
+<% if @organization.present? %>
+  <%= link_to 'Edit Organization', edit_organization_path(@organization) %>
+<% end %>

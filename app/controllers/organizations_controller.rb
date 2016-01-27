@@ -10,10 +10,16 @@ class OrganizationsController < ApplicationController
   # expecting only a single result.
 
   def index
-    @organization = Organization.search(nil)
     if params[:search]
       @organization = Organization.search(params[:search])
     end
+
+    if @organization
+      flash[:notice] = "Organization found."
+    else
+      flash[:notice] = "Organization not found."
+    end
+
   end
 
   # GET /organizations/1
