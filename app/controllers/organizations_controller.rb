@@ -4,9 +4,16 @@ class OrganizationsController < ApplicationController
   # GET /organizations
   # GET /organizations.json
 
-  # We won't use this.
+  # Make the index action only show the org we're searching for.
+  # Search method requires exact match. Otherwise, we'll be spitting out lists
+  # of possible matching results, which could confuse clients if they're
+  # expecting only a single result.
+
   def index
-    @organizations = Organization.all
+    @organization = Organization.search(nil)
+    if params[:search]
+      @organization = Organization.search(params[:search])
+    end
   end
 
   # GET /organizations/1

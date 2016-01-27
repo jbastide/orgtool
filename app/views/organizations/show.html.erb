@@ -1,4 +1,14 @@
 <p id="notice"><%= notice %></p>
 
+<ul>
+  <li>Organization Name:<%= @organization.name %></li>
+  <li>Organization Number:<%= @organization.orgnumber %></li>
+</ul>
+
+<!-- For now, we want to do some data manipulation via the UI -->
+<!-- For production use, we could use sessions and implement an admin boolean
+flag to control access to data modification actions. -->
+
 <%= link_to 'Edit', edit_organization_path(@organization) %> |
-<%= link_to 'Back', organizations_path %>
+<%= link_to 'Destroy', @organization, method: :delete, data: { confirm: 'Are you sure?' } %></td> |
+<%= link_to 'Search Organizations', organizations_path %>

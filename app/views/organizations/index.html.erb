@@ -2,24 +2,19 @@
 
 <h1>Search for an Organization Number by Organization Name</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
 
-  <tbody>
-    <% @organizations.each do |organization| %>
-      <tr>
-        <td><%= link_to 'Show', organization %></td>
-        <td><%= link_to 'Edit', edit_organization_path(organization) %></td>
-        <td><%= link_to 'Destroy', organization, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<h2>Search Form</h2>
 
-<br>
+<%= form_tag(organizations_path, :method => "get", id: "search-form") do %>
+  <%= text_field_tag :search, params[:search], placeholder: "Organization Name" %>
+  <%= submit_tag "Search Organizations" %>
+<% end %>
+
+<div>
+  <ul>
+    <li><%= @organization.name %></li>
+    <li><%= @organization.orgnumber %></li>
+  </ul>
+</div>
 
 <%= link_to 'New Organization', new_organization_path %>
