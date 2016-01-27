@@ -18,7 +18,14 @@ class OrganizationsController < ApplicationController
     if !@organization
       flash.now[:notice] = "No organization found by that name."
     end
-    
+    respond_to do |format|
+      format.json { render json: @organization, :only => [:name,:orgnumber] }
+      format.xml { render xml: @organization, :only => [:name,:orgnumber]}
+    end
+    # Do we create XML and JSON representations of our object here?
+    # The thing is, I don't want flash messages appearing for JSON
+    # and XML requests. But I also don't want to repeat code if I can help it.
+    # Build and test!
   end
 
   # GET /organizations/1
