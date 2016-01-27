@@ -2,5 +2,5 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @organization %> |
-<%= link_to 'Organization Search', root_path %>
+<%= link_to 'Organization Search', root_path %> |
+<%= link_to 'Destroy', @organization, method: :delete, data: { confirm: 'Are you sure?' } %>

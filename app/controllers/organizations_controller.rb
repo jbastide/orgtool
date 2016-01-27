@@ -10,16 +10,15 @@ class OrganizationsController < ApplicationController
   # expecting only a single result.
 
   def index
-    if params[:search]
-      @organization = Organization.search(params[:search])
-    end
+    # Guard clause. Interesting idea I saw online, as an alternative to
+    # nesting conditionals....
+    return false if !params[:search]
+    @organization = Organization.search(params[:search])
 
-    if @organization
-      flash[:notice] = "Organization found."
-    else
-      flash[:notice] = "Organization not found."
+    if !@organization
+      flash.now[:notice] = "No organization found by that name."
     end
-
+    
   end
 
   # GET /organizations/1
@@ -57,7 +56,7 @@ class OrganizationsController < ApplicationController
   def update
     respond_to do |format|
       if @organization.update(organization_params)
-        format.html { redirect_to @organization, notice: 'Organization was successfully updated.' }
+        format.html { redirect_to root_path, notice: 'Organization was successfully updated.' }
         format.json { render :show, status: :ok, location: @organization }
       else
         format.html { render :edit }
