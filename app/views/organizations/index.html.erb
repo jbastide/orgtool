@@ -13,8 +13,8 @@
 <div>
   <% if @organization.present? %>
     <ul>
-      <li><%= @organization.name %></li>
-      <li><%= @organization.orgnumber %></li>
+      <li id = "orgname">Orgname:<%= @organization.name %></li>
+      <li id = "orgnumber">Orgnumber:<%= @organization.orgnumber %></li>
     </ul>
   <% end %>
 </div>

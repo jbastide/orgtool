@@ -1,9 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
+  name: "apoex ab"
   orgnumber: 1
 
 two:
-  name: MyString
-  orgnumber: 1
+  name: weird
+  orgnumber: 2
+
+three:
+  name: science
+  orgnumber: 3
