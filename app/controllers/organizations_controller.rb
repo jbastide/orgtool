@@ -13,11 +13,17 @@ class OrganizationsController < ApplicationController
     # Guard clause. Interesting idea I saw online, as an alternative to
     # nesting conditionals....
     return false if !params[:search]
+
+    # Search for an exact match (see model code where we define the
+    # search method.)
     @organization = Organization.search(params[:search])
 
-    if !@organization
+    #byebug
+    if @organization.present? == false
       flash.now[:notice] = "No organization found by that name."
     end
+
+    #byebug
     respond_to do |format|
       format.html {render :index}
       format.json { render json: @organization, :only => [:name,:orgnumber] }
