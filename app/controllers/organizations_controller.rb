@@ -14,11 +14,17 @@ class OrganizationsController < ApplicationController
     # nesting conditionals....
     return false if !params[:search]
 
+
+    #
+    # Alternate approach. Cache @organizations. Then search by name.
+    # See the model.
+
+
     # Search for an exact match (see model code where we define the
     # search method.)
-    @organization = Organization.search(params[:search])
+    #@organization = Organization.search(params[:search])
+    @organization = Organization.search_cached(params[:search])
 
-    #byebug
     if @organization.present? == false
       flash.now[:notice] = "No organization found by that name."
     end
